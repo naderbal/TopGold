@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvAddVehicle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/content_margin_normal"
+        android:layout_marginTop="@dimen/content_margin_large"
+        android:text="@string/add_vehicle"/>
+
+    <View
+        style="@style/HorizontalSeparatorLight"
+        android:layout_marginTop="@dimen/content_margin_large"/>
+
+    <TextView
+        android:id="@+id/tvEditVehicle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/content_margin_normal"
+        android:layout_marginTop="@dimen/content_margin_large"
+        android:text="@string/edit_vehicle"/>
+
+    <View
+        style="@style/HorizontalSeparatorLight"
+        android:layout_marginTop="@dimen/content_margin_large"/>
+
+    <TextView
+        android:id="@+id/tvAboutUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/content_margin_normal"
+        android:layout_marginTop="@dimen/content_margin_large"
+        android:text="@string/about_us"/>
+
+    <View
+        style="@style/HorizontalSeparatorLight"
+        android:layout_marginTop="@dimen/content_margin_large"/>
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/content_margin_large"
+    android:paddingEnd="@dimen/content_margin_large"
+    android:paddingTop="@dimen/content_margin_large">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:text="SENT ON"/>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        tools:text="20 2 2018"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_large"
+        android:textColor="@color/gray"
+        android:text="VEHICLE"/>
+
+    <TextView
+        android:id="@+id/tvVehicleName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        tools:text="X5"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_large"
+        android:textColor="@color/gray"
+        android:text="ACTION TAKEN"/>
+
+    <TextView
+        android:id="@+id/tvAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_normal"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        tools:text="Status"/>
+
+    <View
+        style="@style/HorizontalSeparatorLight"
+        android:layout_marginTop="@dimen/content_margin_large"/>
+
+</LinearLayout>

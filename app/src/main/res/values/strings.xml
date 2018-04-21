@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Top Gold</string>
+    <string name="oil_on">OIL ON</string>
+    <string name="oil_off">OIL OFF</string>
+    <string name="status">STATUS</string>
+    <string name="address">ADDRESS</string>
+    <string name="add_vehicle">Add Vehicle</string>
+    <string name="edit_vehicle">Edit Vehicle</string>
+    <string name="about_us">About Us</string>
+    <string name="vehicle_number">Vehicle Number</string>
+    <string name="vehicle_pass">Vehicle Pass</string>
+    <string name="vehicle_name">Vehicle Name</string>
+    <string name="save">Save</string>
+    <string name="vehicle_updated">Vehicle updated</string>
+    <string name="number_required">Please enter vehicle number</string>
+    <string name="pass_required">Please enter vehicle pass</string>
+    <string name="name_required">Please enter vehicle name</string>
+    <string name="tracker">TRACKER</string>
+    <string name="monitor">MONITOR</string>
+    <string name="call">CALL</string>
+    <string name="reboot">REBOOT</string>
+    <string name="acc_on">ACC ON</string>
+    <string name="acc_off">ACC OFF</string>
+    <string name="elec_start">ELEC START</string>
+    <string name="elec_stop">ELEC STOP</string>
+    <string name="speed">SPEED</string>
+    <string name="stop_speed">STOP SPEED</string>
+    <string name="password">PASSWORD</string>
+    <string name="timezone">TIMEZONE</string>
+</resources>
