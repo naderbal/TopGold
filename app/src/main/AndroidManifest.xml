@@ -26,10 +26,13 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".sections.add_vehicle.AddVehicleActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".sections.functionality.VehicleFunctionalityActivity"
+        <activity android:name=".sections.functionality.actions.VehicleFunctionalityActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".sections.edit_vehicle.EditVehicleActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".sections.functionality.actions.SpeedFunctionalityActivity" />
+        <activity android:name=".sections.functionality.actions.PasswordFunctionalityActivity" />
+        <activity android:name=".sections.functionality.actions.TimezoneFunctionalityActivity" />
 
         <receiver android:name=".data.messages.MessageReceiver"
             android:permission="android.permission.BROADCAST_SMS">

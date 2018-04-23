@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_large"
+        android:layout_marginStart="@dimen/content_margin_large"
+        android:layout_marginEnd="@dimen/content_margin_large">
+
+        <EditText
+            android:id="@+id/etSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/kmh"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSend"
+        style="@style/Button"
+        android:layout_gravity="center"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="@dimen/content_margin_large"
+        android:layout_marginEnd="@dimen/content_margin_large"
+        android:textColor="@color/white"
+        android:text="@string/send_to_device"/>
+</LinearLayout>

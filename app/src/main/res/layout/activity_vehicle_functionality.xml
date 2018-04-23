@@ -11,10 +11,8 @@
     
     <Button
         android:id="@+id/btnSend"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="42dp"
-        android:textColor="@color/white"
-        android:text="send"/>
+        style="@style/Button"
+        android:text="@string/send_to_device"/>
 </LinearLayout>

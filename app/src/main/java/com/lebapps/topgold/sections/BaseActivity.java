@@ -20,6 +20,8 @@ public class BaseActivity extends AppCompatActivity {
     // rc
     public static final int RC_HOME = 10;
     public static final int RC_ADD_VEHICLE = 11;
+    public static final int VEHICLES_EMPTY = 13;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

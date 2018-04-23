@@ -41,7 +41,7 @@ public class SettingsFragment extends Fragment {
 
     private void openEditVehicle() {
         Intent intent = new Intent(getActivity(), EditVehicleActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 40);
     }
 
     private void openAddVehicle() {

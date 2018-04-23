@@ -169,4 +169,8 @@ public abstract class SharedPreferencesCache {
             return defValue;
         }
     }
+
+    protected boolean contains(String key) {
+        return prefData.contains(key);
+    }
 }

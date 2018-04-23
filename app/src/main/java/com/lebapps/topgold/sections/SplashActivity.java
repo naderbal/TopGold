@@ -45,8 +45,12 @@ public class SplashActivity extends AppCompatActivity {
             } else {
                 finish();
             }
-        } else {
-            finish();
+        } else if (requestCode == BaseActivity.RC_HOME){
+            if (resultCode == BaseActivity.VEHICLES_EMPTY) {
+                openAddVehicle();
+            } else {
+                finish();
+            }
         }
     }
 }

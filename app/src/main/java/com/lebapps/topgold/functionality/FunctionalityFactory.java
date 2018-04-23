@@ -61,9 +61,9 @@ public class FunctionalityFactory {
             case REBOOT:
                 return new Functionality(R.string.reboot, R.drawable.ic_reboot_24dp, "reboot");
             case ACC_ON:
-                return new Functionality(R.string.acc_on, R.drawable.ic_acc_off_24dp, "acc_on");
+                return new Functionality(R.string.acc_on, R.drawable.ic_acc_off_24dp, "accon");
             case ACC_OFF:
-                return new Functionality(R.string.acc_off, R.drawable.ic_acc_on_24dp, "acc_off");
+                return new Functionality(R.string.acc_off, R.drawable.ic_acc_on_24dp, "accoff");
             case OIL_ON:
                 return new Functionality(R.string.oil_on, R.drawable.ic_oil_black_24dp, "supplyoil");
             case OIL_OFF:

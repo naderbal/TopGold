@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
+    <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:theme="@style/ToolbarStyle"
+        app:titleTextAppearance="@style/AppTheme.Toolbar.Title">
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:layout_marginEnd="@dimen/content_margin_large"/>
+
+    </android.support.v7.widget.Toolbar>
 
     <com.jaredrummler.materialspinner.MaterialSpinner
         android:id="@+id/spinner"
@@ -42,9 +58,8 @@
         <Button
             android:id="@+id/btnContacts"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Contacts"/>
+            style="@style/Button"
+            android:text="@string/contacts"/>
     </LinearLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -81,11 +96,10 @@
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="44dp"
         android:layout_marginStart="@dimen/content_margin_large"
         android:layout_marginEnd="@dimen/content_margin_large"
-        android:textColor="@color/white"
+        style="@style/Button"
         android:text="@string/save"/>
 </LinearLayout>

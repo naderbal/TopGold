@@ -15,6 +15,8 @@ import android.support.v4.view.ViewPager;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.lebapps.topgold.R;
+import com.lebapps.topgold.data.vehicle.Vehicle;
+import com.lebapps.topgold.data.vehicle.VehiclesManager;
 import com.lebapps.topgold.sections.BaseActivity;
 import com.lebapps.topgold.sections.functionality.FunctionalityFragment;
 import com.lebapps.topgold.sections.history.HistoryFragment;
@@ -73,6 +75,16 @@ public class HomeActivity extends BaseActivity{
         bottomNavigation.setCurrentItem(0);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (viewPager.getCurrentItem() != 0) {
+            viewPager.setCurrentItem(0);
+            bottomNavigation.setCurrentItem(0);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     void initFragments() {
         functionalityFragment = new FunctionalityFragment();
         historyFragment = new HistoryFragment();
@@ -103,8 +115,14 @@ public class HomeActivity extends BaseActivity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == BaseActivity.RC_ADD_VEHICLE) {
-            functionalityFragment.refreshVehicles();
+        final ArrayList<Vehicle> vehicles = VehiclesManager.getInstance().getVehicles();
+        if (vehicles.size() == 0) {
+            setResult(BaseActivity.VEHICLES_EMPTY);
+            finish();
+        } else {
+            if (requestCode == BaseActivity.RC_ADD_VEHICLE) {
+                functionalityFragment.refreshVehicles();
+            }
         }
     }
 

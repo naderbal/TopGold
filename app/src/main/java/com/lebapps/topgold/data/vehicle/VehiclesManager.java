@@ -68,6 +68,18 @@ public class VehiclesManager {
         this.items = items;
     }
 
+    public void deleteVehicle(Vehicle vehicle) {
+        Cache cache = getCache();
+        final ArrayList<Vehicle> items = cache.getItems();
+        for (Vehicle item : items) {
+            if (item.equals(vehicle)) {
+                items.remove(item);
+            }
+        }
+        cache.storeItems(items);
+        this.items = items;
+    }
+
     public ArrayList<Vehicle> getVehicles() {
         return items;
     }

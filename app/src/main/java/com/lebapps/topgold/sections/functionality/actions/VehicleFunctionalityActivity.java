@@ -1,11 +1,10 @@
-package com.lebapps.topgold.sections.functionality;
+package com.lebapps.topgold.sections.functionality.actions;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.lebapps.topgold.R;
 import com.lebapps.topgold.data.history.ActionHistory;
-import com.lebapps.topgold.data.history.HistoryHelper;
 import com.lebapps.topgold.data.history.HistoryManager;
 import com.lebapps.topgold.data.messages.MessageSender;
 import com.lebapps.topgold.data.vehicle.Vehicle;
@@ -45,11 +44,27 @@ public class VehicleFunctionalityActivity extends BaseActivity {
 
         ActionHistory history = new ActionHistory(strDate, vehicle.getName(), getString(functionality.getFunctionalityResource()));
         HistoryManager.getInstance().addHistory(history);
-        //MessageSender.sendSMS(vehicle.getNumber(), getFunctionalityCode(), this::handleSuccess);
+        MessageSender.sendSMS(vehicle.getNumber(), getFunctionalityCode(), this::handleSuccess);
     }
 
     private void handleSuccess() {
         showToast("Message sent successfully, please wait for reply");
+        final String code = functionality.getFunctionalityCode();
+        if (code.equals("supplyoil")) {
+            HistoryManager.getInstance().setOil(true);
+        } else if(code.equals("stopoil")) {
+            HistoryManager.getInstance().setOil(false);
+        } else if (code.equals("accon")) {
+            HistoryManager.getInstance().setAcc(true);
+        } else if(code.equals("accoff")) {
+            HistoryManager.getInstance().setAcc(false);
+        } else if(code.equals("supplyelec")){
+            HistoryManager.getInstance().setElec(true);
+        } else if (code.equals("stopelec")) {
+            HistoryManager.getInstance().setElec(false);
+        } else if (code.equals("nospeed")){
+            HistoryManager.getInstance().setSpeed(false);
+        }
     }
 
     public String getFunctionalityCode() {

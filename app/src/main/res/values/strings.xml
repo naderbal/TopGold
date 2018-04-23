@@ -27,4 +27,25 @@
     <string name="stop_speed">STOP SPEED</string>
     <string name="password">PASSWORD</string>
     <string name="timezone">TIMEZONE</string>
+    <string name="kmh">KMH</string>
+    <string name="send_to_device">Send To device</string>
+    <string name="speed_error">Speed should only be in numbers</string>
+    <string name="speed_empty">Please enter speed</string>
+    <string name="message_sent_success">Message sent successfully, please wait for reply</string>
+    <string name="speed_negative_error">Speed should be positive</string>
+    <string name="new_password">New</string>
+    <string name="password_empty">Please enter new password</string>
+    <string name="we">W/E</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="weekend_empty">Please enter weekend</string>
+    <string name="hours_empty">hours_empty</string>
+    <string name="minutes_empty">Please enter minutes</string>
+    <string name="hours_invalid">Hours should be numbers only</string>
+    <string name="minutes_invalid">Minutes should be numeric only</string>
+    <string name="hours_negative">Hours should be positive</string>
+    <string name="minutes_negative">Minutes should only be positive</string>
+    <string name="contacts">Contacts</string>
+    <string name="device_replied">Device replied successfully</string>
+    <string name="vehicle_deleted">Vehicle deleted successfully</string>
 </resources>

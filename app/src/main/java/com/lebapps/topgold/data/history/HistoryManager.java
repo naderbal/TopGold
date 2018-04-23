@@ -19,6 +19,7 @@ public class HistoryManager {
 
     private static HistoryManager historyManager;
     private ArrayList<ActionHistory> items;
+    PublishSubject<Boolean> subject = PublishSubject.create();
 
     private HistoryManager() {
         init();
@@ -29,6 +30,10 @@ public class HistoryManager {
             historyManager = new HistoryManager();
         }
         return historyManager;
+    }
+
+    public void subscribeToSubject(Subscriber<Boolean> subscriber){
+        subject.subscribe(subscriber);
     }
 
     private void init() {
@@ -59,9 +64,65 @@ public class HistoryManager {
         getCache().storeItems(items);
     }
 
+    public void setAcc(boolean enabled) {
+        getCache().storeAcc(enabled);
+        subject.onNext(true);
+    }
+
+    public void setOil(boolean enabled) {
+        getCache().storeOil(enabled);
+        subject.onNext(true);
+    }
+
+    public void setElec(boolean enabled) {
+        getCache().storeElec(enabled);
+        subject.onNext(true);
+    }
+
+    public void setSpeed(boolean enabled) {
+        getCache().storeSpeed(enabled);
+        subject.onNext(true);
+    }
+
+    public boolean getAcc(){
+        return getCache().getAcc();
+    }
+
+    public boolean getOil(){
+        return getCache().getOil();
+    }
+
+    public boolean getElec(){
+        return getCache().getElec();
+    }
+
+    public boolean getSpeed(){
+        return getCache().getSpeed();
+    }
+
+    public boolean getElecSet() {
+        return getCache().getElecSet();
+    }
+
+    public boolean getOilSet() {
+        return getCache().getOilSet();
+    }
+
+    public boolean getAccSet() {
+        return getCache().getAccSet();
+    }
+
+    public boolean getSpeedSet() {
+        return getCache().getSpeedSet();
+    }
+
     private static class Cache extends SharedPreferencesCache {
         private final String PREF_NAME = "history_manager";
         private final String HISTORY = "history";
+        private final String ACC = "acc";
+        private final String OIL = "oil";
+        private final String ELEC = "elec";
+        private final String SPEED = "speed";
 
         private Cache(Context context) {
             super(context);
@@ -70,6 +131,54 @@ public class HistoryManager {
         @Override
         protected String getName() {
             return PREF_NAME;
+        }
+
+        private void storeAcc(boolean enabled) {
+            storeBoolean(ACC, enabled);
+        }
+
+        private void storeOil(boolean enabled) {
+            storeBoolean(OIL, enabled);
+        }
+
+        private void storeElec(boolean enabled) {
+            storeBoolean(ELEC, enabled);
+        }
+
+        private void storeSpeed(boolean enabled) {
+            storeBoolean(SPEED, enabled);
+        }
+
+        private boolean getAccSet() {
+            return contains(ACC);
+        }
+
+        private boolean getOilSet() {
+            return contains(OIL);
+        }
+
+        private boolean getElecSet() {
+            return contains(ELEC);
+        }
+
+        private boolean getSpeedSet() {
+            return contains(SPEED);
+        }
+
+        private boolean getAcc() {
+            return getBoolean(ACC, false);
+        }
+
+        private boolean getOil() {
+            return getBoolean(OIL, false);
+        }
+
+        private boolean getElec() {
+            return getBoolean(ELEC, false);
+        }
+
+        private boolean getSpeed() {
+            return getBoolean(SPEED, false);
         }
 
         private void storeItems(ArrayList<ActionHistory> items) {

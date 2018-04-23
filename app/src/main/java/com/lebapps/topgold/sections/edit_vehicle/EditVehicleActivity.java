@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.lebapps.topgold.R;
@@ -23,18 +24,22 @@ import java.util.ArrayList;
  *
  */
 public class EditVehicleActivity extends BaseActivity {
+    private static final int RESULT_CODE_VEHICLE_DELETED = 12;
     private final int PICK_CONTACT = 10;
     private static final String[] phoneProjection = new String[] { ContactsContract.CommonDataKinds.Phone.DATA };
     // views
     private EditText etNumber, etPass, etName;
     private Button btnSubmit, btnContacts;
     private MaterialSpinner spinner;
+    ImageView ivDelete;
     Vehicle vehicle;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_vehicle);
         initViews();
+        configureToolbarWithUpButton(R.id.toolbar, R.string.edit_vehicle);
         configureSpinner();
         handleVehicleSelected(0);
     }
@@ -83,9 +88,18 @@ public class EditVehicleActivity extends BaseActivity {
         etName = findViewById(R.id.etName);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnContacts = findViewById(R.id.btnContacts);
+        ivDelete = findViewById(R.id.ivDelete);
 
         btnSubmit.setOnClickListener(v -> handleSubmit());
         btnContacts.setOnClickListener(v -> openContacts());
+        ivDelete.setOnClickListener(v -> deleteVehicle());
+    }
+
+    private void deleteVehicle() {
+        VehiclesManager.getInstance().deleteVehicle(vehicle);
+        showToast(getString(R.string.vehicle_deleted));
+        setResult(RESULT_CODE_VEHICLE_DELETED);
+        finish();
     }
 
     private void openContacts() {

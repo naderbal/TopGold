@@ -13,11 +13,16 @@ import android.widget.Toast;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.lebapps.topgold.R;
+import com.lebapps.topgold.data.history.HistoryManager;
 import com.lebapps.topgold.data.messages.MessageReceiver;
 import com.lebapps.topgold.data.vehicle.Vehicle;
 import com.lebapps.topgold.data.vehicle.VehiclesManager;
 import com.lebapps.topgold.functionality.Functionality;
 import com.lebapps.topgold.functionality.FunctionalityFactory;
+import com.lebapps.topgold.sections.functionality.actions.PasswordFunctionalityActivity;
+import com.lebapps.topgold.sections.functionality.actions.SpeedFunctionalityActivity;
+import com.lebapps.topgold.sections.functionality.actions.TimezoneFunctionalityActivity;
+import com.lebapps.topgold.sections.functionality.actions.VehicleFunctionalityActivity;
 
 import java.util.ArrayList;
 
@@ -55,10 +60,22 @@ public class FunctionalityFragment extends Fragment {
 
             @Override
             public void onNext(Boolean o) {
-                Toast.makeText(getContext(), "Device replied successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.device_replied, Toast.LENGTH_LONG).show();
             }
         };
         MessageReceiver.subscribeToSPublish(subscriber);
+        HistoryManager.getInstance().subscribeToSubject(new Subscriber<Boolean>() {
+            @Override
+            public void onCompleted() {}
+
+            @Override
+            public void onError(Throwable e) {}
+
+            @Override
+            public void onNext(Boolean aBoolean) {
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -98,7 +115,22 @@ public class FunctionalityFragment extends Fragment {
     }
 
     private void openVehicleFunctionality(Functionality functionality) {
-        Intent intent = new Intent(getActivity(), VehicleFunctionalityActivity.class);
+        // todo refactor
+        Intent intent = null;
+        switch (functionality.getFunctionalityCode()) {
+            case "speed":
+                intent = new Intent(getActivity(), SpeedFunctionalityActivity.class);
+                break;
+            case "password":
+                intent = new Intent(getActivity(), PasswordFunctionalityActivity.class);
+                break;
+            case "timezone":
+                intent = new Intent(getActivity(), TimezoneFunctionalityActivity.class);
+                break;
+            default:
+                intent = new Intent(getActivity(), VehicleFunctionalityActivity.class);
+                break;
+        }
         intent.putExtra("functionality", functionality);
         intent.putExtra("vehicle", selectedVehicle);
         startActivity(intent);

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import com.lebapps.topgold.R;
+import com.lebapps.topgold.data.history.HistoryManager;
 import com.lebapps.topgold.functionality.Functionality;
 
 import java.util.ArrayList;
@@ -50,16 +51,73 @@ public class FunctinalityAdapter extends RecyclerView.Adapter<FunctinalityAdapte
 
         TextView tvFunctionality;
         ImageView ivIcon;
+        View vSet;
 
         public FunctionalityViewHolder(View itemView) {
             super(itemView);
             tvFunctionality = itemView.findViewById(R.id.tvFunctionality);
             ivIcon = itemView.findViewById(R.id.ivIcon);
+            vSet = itemView.findViewById(R.id.vSet);
         }
 
         public void bind(Functionality functionality) {
             tvFunctionality.setText(functionality.getFunctionalityResource());
             ivIcon.setBackgroundResource(functionality.getImageResource());
+
+            final String code = functionality.getFunctionalityCode();
+            final HistoryManager instance = HistoryManager.getInstance();
+
+            if (code.equals("supplyoil")) {
+                if (instance.getOilSet() && instance.getOil()) {
+                    vSet.setVisibility(View.VISIBLE);
+                } else {
+                    vSet.setVisibility(View.INVISIBLE);
+                }
+            } else if(code.equals("stopoil")) {
+                if (instance.getOilSet() && !instance.getOil()) {
+                    vSet.setVisibility(View.VISIBLE);
+                } else {
+                    vSet.setVisibility(View.INVISIBLE);
+                }
+            } else if (code.equals("accon")) {
+                if (instance.getAccSet() && instance.getAcc()) {
+                    vSet.setVisibility(View.VISIBLE);
+                } else {
+                    vSet.setVisibility(View.INVISIBLE);
+                }
+            } else if(code.equals("accoff")) {
+                if (instance.getAccSet() && !instance.getAcc()) {
+                    vSet.setVisibility(View.VISIBLE);
+                } else {
+                    vSet.setVisibility(View.INVISIBLE);
+                }
+            } else if(code.equals("supplyelec")){
+                if (instance.getElecSet() && instance.getElec()) {
+                    vSet.setVisibility(View.VISIBLE);
+                } else {
+                    vSet.setVisibility(View.INVISIBLE);
+                }
+            } else if (code.equals("stopelec")) {
+                if (instance.getElecSet() && !instance.getElec()) {
+                    vSet.setVisibility(View.VISIBLE);
+                } else {
+                    vSet.setVisibility(View.INVISIBLE);
+                }
+            } else if(code.equals("speed")) {
+                if (instance.getSpeedSet() && instance.getSpeed()) {
+                    vSet.setVisibility(View.VISIBLE);
+                } else {
+                    vSet.setVisibility(View.INVISIBLE);
+                }
+            } else if (code.equals("nospeed")){
+                if (instance.getSpeedSet() && !instance.getSpeed()) {
+                    vSet.setVisibility(View.VISIBLE);
+                } else {
+                    vSet.setVisibility(View.INVISIBLE);
+                }
+            } else {
+                vSet.setVisibility(View.INVISIBLE);
+            }
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onClicked(functionality);

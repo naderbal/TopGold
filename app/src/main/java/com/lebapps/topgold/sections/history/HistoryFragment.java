@@ -14,6 +14,9 @@ import com.lebapps.topgold.data.history.ActionHistory;
 import com.lebapps.topgold.data.history.HistoryManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+import rx.Subscriber;
 
 /**
  *
@@ -35,9 +38,22 @@ public class HistoryFragment extends Fragment {
 
         rvContent = view.findViewById(R.id.rvContent);
         final ArrayList<ActionHistory> history = HistoryManager.getInstance().getHistory();
+        Collections.reverse(history);
         HistoryAdapter adapter = new HistoryAdapter(getContext(), history);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvContent.setAdapter(adapter);
         rvContent.setLayoutManager(layoutManager);
+        HistoryManager.getInstance().subscribeToSubject(new Subscriber<Boolean>() {
+            @Override
+            public void onCompleted() {}
+
+            @Override
+            public void onError(Throwable e) {}
+
+            @Override
+            public void onNext(Boolean aBoolean) {
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }
