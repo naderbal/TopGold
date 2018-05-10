@@ -21,16 +21,23 @@
     </style>
 
     <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="colorControlNormal">@color/black</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:textColor">@color/white</item>
     </style>
     <style name="AppTheme.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
     </style>
     <style name="Button">
         <item name="android:layout_width">270dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/shape_yellow_button_background</item>
+        <item name="android:background">@drawable/shape_blue_button_background</item>
     </style>
+    <style name="GreenButton">
+        <item name="android:layout_width">270dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/shape_green_button_background</item>
+    </style>
+
 </resources>

@@ -27,20 +27,22 @@ import java.util.Locale;
 /**
  *
  */
-public class TimezoneFunctionalityActivity extends BaseActivity {
+public class AdminFunctionalityActivity extends BaseActivity {
     Functionality functionality;
     Vehicle vehicle;
-    TextInputLayout tilWe;
-    TextInputLayout tilHours;
-    TextInputLayout tilMinutes;
-    EditText etWe;
-    EditText etHours;
-    EditText etMinutes;
+    TextInputLayout tilPhone1;
+    TextInputLayout tilPhone2;
+    TextInputLayout tilPhone3;
+    TextInputLayout tilPhone4;
+    EditText etPhone1;
+    EditText etPhone2;
+    EditText etPhone3;
+    EditText etPhone4;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timezone_functionality);
+        setContentView(R.layout.activity_admin_functionality);
         functionality = (Functionality) getIntent().getSerializableExtra("functionality");
         vehicle = (Vehicle) getIntent().getSerializableExtra("vehicle");
         configureToolbarWithUpButton(R.id.toolbar, functionality.getFunctionalityResource());
@@ -49,16 +51,18 @@ public class TimezoneFunctionalityActivity extends BaseActivity {
 
     private void initViews() {
         // et
-        etWe = findViewById(R.id.etWe);
-        etHours = findViewById(R.id.etHours);
-        etMinutes = findViewById(R.id.etMinutes);
+        etPhone1 = findViewById(R.id.etPhone1);
+        etPhone2 = findViewById(R.id.etPhone2);
+        etPhone3 = findViewById(R.id.etPhone3);
+        etPhone4 = findViewById(R.id.etPhone4);
         // til
-        tilWe = findViewById(R.id.tilWe);
-        tilHours = findViewById(R.id.tilHours);
-        tilMinutes = findViewById(R.id.tilMinutes);
+        tilPhone1 = findViewById(R.id.tilPhone1);
+        tilPhone2 = findViewById(R.id.tilPhone2);
+        tilPhone3 = findViewById(R.id.tilPhone3);
+        tilPhone4 = findViewById(R.id.tilPhone4);
 
         findViewById(R.id.btnSend).setOnClickListener(v -> handleSendClicked());
-        etWe.addTextChangedListener(new TextWatcher() {
+        etPhone1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -67,10 +71,10 @@ public class TimezoneFunctionalityActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                tilWe.setError(null);
+                tilPhone1.setError(null);
             }
         });
-        etHours.addTextChangedListener(new TextWatcher() {
+        etPhone2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -79,10 +83,10 @@ public class TimezoneFunctionalityActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                tilHours.setError(null);
+                tilPhone2.setError(null);
             }
         });
-        etMinutes.addTextChangedListener(new TextWatcher() {
+        etPhone3.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -91,7 +95,19 @@ public class TimezoneFunctionalityActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                tilMinutes.setError(null);
+                tilPhone3.setError(null);
+            }
+        });
+        etPhone4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tilPhone4.setError(null);
             }
         });
     }
@@ -129,7 +145,7 @@ public class TimezoneFunctionalityActivity extends BaseActivity {
     }
 
     private void sendMessage() {
-        if (validateTimeZone()){
+        if (validatePhone()){
             Date date = Calendar.getInstance().getTime();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH);
             final String strDate = simpleDateFormat.format(date);
@@ -145,48 +161,34 @@ public class TimezoneFunctionalityActivity extends BaseActivity {
     }
 
     public String getFunctionalityCode() {
-        return "#" + functionality.getFunctionalityCode() + "#" +vehicle.getPassword() + "#" + getTimezone();
+        return "#" + functionality.getFunctionalityCode() + "#" +vehicle.getPassword() + "#" + getPhones();
     }
 
-    private boolean validateTimeZone() {
-        final String we = etWe.getText().toString().trim();
-        final String hours = etHours.getText().toString().trim();
-        final String minutes = etMinutes.getText().toString().trim();
-        if (we.isEmpty()) {
-            tilWe.setError(getString(R.string.weekend_empty));
-            return false;
-        }
-        if (hours.isEmpty()) {
-            tilHours.setError(getString(R.string.hours_empty));
-            return false;
-        }
-        if(!hours.matches("\\d+(?:\\.\\d+)?")) {
-            tilHours.setError(getString(R.string.hours_invalid));
-            return false;
-        }
-        if(Integer.parseInt(hours) < 0) {
-            tilHours.setError(getString(R.string.hours_negative));
-            return false;
-        }
-        if (minutes.isEmpty()) {
-            tilMinutes.setError(getString(R.string.minutes_empty));
-            return false;
-        }
-        if(!minutes.matches("\\d+(?:\\.\\d+)?")) {
-            tilHours.setError(getString(R.string.minutes_invalid));
-            return false;
-        }
-        if(Integer.parseInt(minutes) < 0) {
-            tilMinutes.setError(getString(R.string.minutes_negative));
-            return false;
+    private boolean validatePhone() {
+        final String phone1 = etPhone1.getText().toString().trim();
+        if (phone1.isEmpty()) {
+         tilPhone1.setError(getString(R.string.phone_1_error));
+         return false;
         }
         return true;
     }
 
-    public String getTimezone() {
-        final String we = etWe.getText().toString().trim();
-        final String hours = etHours.getText().toString().trim();
-        final String minutes = etMinutes.getText().toString().trim();
-        return we + "#" + hours + "#" + minutes;
+    public String getPhones() {
+        final String phone1 = etPhone1.getText().toString().trim();
+        final String phone2 = etPhone2.getText().toString().trim();
+        final String phone3 = etPhone3.getText().toString().trim();
+        final String phone4 = etPhone4.getText().toString().trim();
+
+        String phone = "#" + phone1 + "#";
+        if (!phone2.isEmpty()) {
+            phone = phone + "#" + phone2 + "#";
+        }
+        if (!phone3.isEmpty()) {
+            phone = phone + "#" +  phone3 + "#";
+        }
+        if (!phone4.isEmpty()) {
+            phone = phone + "#" + phone4 + "#";
+        }
+        return phone;
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.lebapps.topgold.data.vehicle.Vehicle;
 import com.lebapps.topgold.data.vehicle.VehiclesManager;
 import com.lebapps.topgold.functionality.Functionality;
 import com.lebapps.topgold.functionality.FunctionalityFactory;
+import com.lebapps.topgold.sections.functionality.actions.AdminFunctionalityActivity;
 import com.lebapps.topgold.sections.functionality.actions.PasswordFunctionalityActivity;
 import com.lebapps.topgold.sections.functionality.actions.SpeedFunctionalityActivity;
 import com.lebapps.topgold.sections.functionality.actions.TimezoneFunctionalityActivity;
@@ -36,7 +38,7 @@ public class FunctionalityFragment extends Fragment {
     private MaterialSpinner spinner;
     private Vehicle selectedVehicle;
     private FunctinalityAdapter adapter;
-    Subscriber<Boolean> subscriber;
+    Subscriber<String> subscriber;
 
     @Nullable
     @Override
@@ -51,7 +53,7 @@ public class FunctionalityFragment extends Fragment {
         configureSpinner(view);
         configureFunctionalitiesListing();
         selectedVehicle = getSelectedVehicle(0);
-        subscriber = new Subscriber<Boolean>() {
+        subscriber = new Subscriber<String>() {
             @Override
             public void onCompleted() {}
 
@@ -59,8 +61,8 @@ public class FunctionalityFragment extends Fragment {
             public void onError(Throwable e) {}
 
             @Override
-            public void onNext(Boolean o) {
-                Toast.makeText(getContext(), R.string.device_replied, Toast.LENGTH_LONG).show();
+            public void onNext(String o) {
+                Toast.makeText(getContext(), R.string.device_replied + " " + o, Toast.LENGTH_LONG).show();
             }
         };
         MessageReceiver.subscribeToSPublish(subscriber);
@@ -109,7 +111,7 @@ public class FunctionalityFragment extends Fragment {
                 openVehicleFunctionality(functionality);
             }
         });
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rvContent.setLayoutManager(layoutManager);
         rvContent.setAdapter(adapter);
     }
@@ -126,6 +128,9 @@ public class FunctionalityFragment extends Fragment {
                 break;
             case "timezone":
                 intent = new Intent(getActivity(), TimezoneFunctionalityActivity.class);
+                break;
+            case "admin":
+                intent = new Intent(getActivity(), AdminFunctionalityActivity.class);
                 break;
             default:
                 intent = new Intent(getActivity(), VehicleFunctionalityActivity.class);

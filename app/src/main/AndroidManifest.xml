@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lebapps.topgold">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -33,6 +34,7 @@
         <activity android:name=".sections.functionality.actions.SpeedFunctionalityActivity" />
         <activity android:name=".sections.functionality.actions.PasswordFunctionalityActivity" />
         <activity android:name=".sections.functionality.actions.TimezoneFunctionalityActivity" />
+        <activity android:name=".sections.functionality.actions.AdminFunctionalityActivity" />
 
         <receiver android:name=".data.messages.MessageReceiver"
             android:permission="android.permission.BROADCAST_SMS">

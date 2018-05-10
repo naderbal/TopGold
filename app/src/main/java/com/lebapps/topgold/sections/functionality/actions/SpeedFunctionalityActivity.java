@@ -1,12 +1,16 @@
 package com.lebapps.topgold.sections.functionality.actions;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.lebapps.topgold.PermissionsUtils;
 import com.lebapps.topgold.R;
 import com.lebapps.topgold.data.history.ActionHistory;
 import com.lebapps.topgold.data.history.HistoryManager;
@@ -62,6 +66,14 @@ public class SpeedFunctionalityActivity extends BaseActivity {
     }
 
     private void handleSendClicked() {
+        if (PermissionsUtils.hasPermissions(this)) {
+            sendMessage();
+        } else {
+            PermissionsUtils.checkAndRequestPermissions(this);
+        }
+    }
+
+    private void sendMessage() {
         if (validateSpeed()){
             Date date = Calendar.getInstance().getTime();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH);
@@ -70,6 +82,30 @@ public class SpeedFunctionalityActivity extends BaseActivity {
             ActionHistory history = new ActionHistory(strDate, vehicle.getName(), getString(functionality.getFunctionalityResource()));
             HistoryManager.getInstance().addHistory(history);
             MessageSender.sendSMS(vehicle.getNumber(), getFunctionalityCode(), this::handleSuccess);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    sendMessage();
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(this, R.string.permissions_denied, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
         }
     }
 

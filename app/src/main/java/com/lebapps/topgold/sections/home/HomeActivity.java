@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.lebapps.topgold.PermissionsUtils;
 import com.lebapps.topgold.R;
 import com.lebapps.topgold.data.vehicle.Vehicle;
 import com.lebapps.topgold.data.vehicle.VehiclesManager;
@@ -44,18 +45,16 @@ public class HomeActivity extends BaseActivity{
         initFragments();
         configureToolbar(R.string.app_name);
         setupPager();
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
-                10);
+        PermissionsUtils.checkAndRequestPermissions(this);
     }
 
     private void initViews() {
         bottomNavigation =  findViewById(R.id.bottomNavigation);
         viewPager =  findViewById(R.id.viewPager);
 
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("Functionality", R.drawable.ic_power_settings_new_black_24dp);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("History", R.drawable.ic_history_black_24dp);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("Settings", R.drawable.ic_settings_black_24dp);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem(getString(R.string.functionality), R.drawable.ic_power_settings_new_black_24dp);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getString(R.string.history), R.drawable.ic_history_black_24dp);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(getString(R.string.settings), R.drawable.ic_settings_black_24dp);
 
         ArrayList<AHBottomNavigationItem> bottomNavigationItems = new ArrayList<>();
 
@@ -63,7 +62,7 @@ public class HomeActivity extends BaseActivity{
         bottomNavigationItems.add(item2);
         bottomNavigationItems.add(item3);
 
-        bottomNavigation.setAccentColor(ContextCompat.getColor(getBaseContext(), R.color.colorAccent));
+        bottomNavigation.setAccentColor(ContextCompat.getColor(getBaseContext(), R.color.colorPrimary));
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         bottomNavigation.setBehaviorTranslationEnabled(false);
         bottomNavigation.addItems(bottomNavigationItems);

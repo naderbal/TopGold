@@ -13,6 +13,10 @@ import java.util.ArrayList;
 public class FunctionalityFactory {
 
     public enum FunctionalityType {
+        BEGIN,
+
+        ADMIN,
+
         STATUS,
 
         ADDRESS,
@@ -58,6 +62,8 @@ public class FunctionalityFactory {
                 return new Functionality(R.string.monitor, R.drawable.ic_monitor_24dp, "monitor");
             case CALL:
                 return new Functionality(R.string.call, R.drawable.ic_call_24dp, "call");
+            case BEGIN:
+                return new Functionality(R.string.begin, R.drawable.ic_beenhere_black_24dp, "begin");
             case REBOOT:
                 return new Functionality(R.string.reboot, R.drawable.ic_reboot_24dp, "reboot");
             case ACC_ON:
@@ -78,6 +84,8 @@ public class FunctionalityFactory {
                 return new Functionality(R.string.stop_speed, R.drawable.ic_stop_speed_24dp, "nospeed");
             case PASSWORD:
                 return new Functionality(R.string.password, R.drawable.ic_password_24dp, "password");
+            case ADMIN:
+                return new Functionality(R.string.admin, R.drawable.ic_account_balance_black_24dp, "admin");
             case TIME_ZONE:
                 return new Functionality(R.string.timezone, R.drawable.ic_time_zone_24dp, "timezone");
             default: return null;

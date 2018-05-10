@@ -48,4 +48,16 @@
     <string name="contacts">Contacts</string>
     <string name="device_replied">Device replied successfully</string>
     <string name="vehicle_deleted">Vehicle deleted successfully</string>
+    <string name="message_sent_successfully">Message sent successfully, please wait for reply</string>
+    <string name="permissions_denied">Permission denied</string>
+    <string name="begin">BEGIN</string>
+    <string name="admin">ADMIN</string>
+    <string name="phone_1">Phone number 1</string>
+    <string name="phone_2">Phone number 2</string>
+    <string name="phone_3">Phone number 3</string>
+    <string name="phone_4">Phone number 4</string>
+    <string name="phone_1_error">Phone 1 can\'t be empty</string>
+    <string name="functionality">Functionality</string>
+    <string name="history">History</string>
+    <string name="settings">Settings</string>
 </resources>

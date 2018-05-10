@@ -68,7 +68,7 @@ public class PasswordFunctionalityActivity extends BaseActivity {
 
             ActionHistory history = new ActionHistory(strDate, vehicle.getName(), getString(functionality.getFunctionalityResource()));
             HistoryManager.getInstance().addHistory(history);
-            //MessageSender.sendSMS(vehicle.getNumber(), getFunctionalityCode(), this::handleSuccess);
+            //MessageSender.SEND_SMS(vehicle.getNumber(), getFunctionalityCode(), this::handleSuccess);
         }
     }
 

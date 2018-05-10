@@ -15,9 +15,9 @@ import rx.subjects.PublishSubject;
  */
 public class MessageReceiver extends BroadcastReceiver {
 
-    static PublishSubject<Boolean> subject = PublishSubject.create();
+    static PublishSubject<String> subject = PublishSubject.create();
 
-    public static void subscribeToSPublish(Subscriber<Boolean> subscriber) {
+    public static void subscribeToSPublish(Subscriber<String> subscriber) {
         subject.subscribe(subscriber);
     }
 
@@ -35,7 +35,7 @@ public class MessageReceiver extends BroadcastReceiver {
                         msgs[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
                         String msgBody = msgs[i].getMessageBody();
                         Log.i("Message", msgBody);
-                        subject.onNext(true);
+                        subject.onNext(msgBody);
                     }
                 } catch(Exception ignored){
 
